@@ -24,4 +24,4 @@ if [ -z "$CLASS" ]; then
     exit 1
 fi
 
-java -cp /usr/src/app/flinkKafka.jar flinkKafka.$CLASS
+java -cp /usr/src/app/flinkKafka.jar entry.$CLASS

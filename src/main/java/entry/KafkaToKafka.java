@@ -1,4 +1,4 @@
-package flinkKafka;
+package entry;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
@@ -8,6 +8,7 @@ import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.connector.base.DeliveryGuarantee;
 
 public class KafkaToKafka {
 
@@ -35,6 +36,7 @@ public class KafkaToKafka {
 						.setValueSerializationSchema(new SimpleStringSchema())
 						.build()
 				)
+				.setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE)
 				.build();
 
 		// print log
@@ -43,6 +45,6 @@ public class KafkaToKafka {
 		stream.sinkTo(sink);
 
 		// run job
-		env.execute("Flink Kafka Example");
+		env.execute("Flink Kafka To Kafka Example");
 	}
 }
