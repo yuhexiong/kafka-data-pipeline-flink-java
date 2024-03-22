@@ -36,7 +36,7 @@ public class KafkaToKafka {
 						.setValueSerializationSchema(new SimpleStringSchema())
 						.build()
 				)
-				.setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE)
+				.setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE) // guarantee at least send one time
 				.build();
 
 		// print log
