@@ -31,3 +31,4 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myapp
 
 ### KafkaToKafka
 ### KafkaRegexTopicsToKafka
+### KafkaToDoris

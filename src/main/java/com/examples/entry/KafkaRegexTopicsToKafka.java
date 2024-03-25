@@ -1,7 +1,7 @@
 package com.examples.entry;
 
-import deserializer.KafkaTopicPayloadDeserializationSchema;
-import entity.KafkaTopicPayload;
+import com.examples.deserializer.KafkaTopicPayloadDeserializationSchema;
+import com.examples.entity.KafkaTopicPayload;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.base.DeliveryGuarantee;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
@@ -9,7 +9,7 @@ import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import serializer.KafkaTopicPayloadSerializationSchema;
+import com.examples.serializer.KafkaTopicPayloadSerializationSchema;
 
 import java.util.regex.Pattern;
 
