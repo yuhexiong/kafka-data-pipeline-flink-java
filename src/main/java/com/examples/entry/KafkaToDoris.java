@@ -13,9 +13,6 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
 import org.apache.flink.connector.jdbc.JdbcSink;
 
-import java.time.LocalDateTime;
-import java.sql.Timestamp;
-
 public class KafkaToDoris {
 
     public static void main(String[] args) throws Exception {
@@ -43,7 +40,7 @@ public class KafkaToDoris {
                     statement.setString(2, sensorEvent.getSensorType());
                     statement.setString(3, sensorEvent.getTimestamp());
                     statement.setString(4, sensorEvent.getLocation());
-                    statement.setString(5, sensorEvent.getValue());
+                    statement.setString(5, String.valueOf(sensorEvent.getValue()));
                     statement.setString(6, sensorEvent.getUnit());
 
                 },
@@ -71,6 +68,5 @@ public class KafkaToDoris {
 
         env.execute("Kafka to Doris Example");
     }
-
 
 }

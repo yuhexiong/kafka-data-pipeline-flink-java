@@ -40,7 +40,7 @@ All topics matching "^topicV.*" in localhost:9092 will be backed up to the same 
 Example: topicV1 in localhost:9092 
   -> topicV1 in localhost:9093
   -> topicV1 in localhost:9094
-  -> topicV1 in localhost:9095.  
+  -> topicV1 in localhost:9095  
 ```
 
 ### KafkaToDoris
@@ -48,7 +48,7 @@ Example: topicV1 in localhost:9092
 - Kafka Data Structure
 ```
 {
-    "location": "Machine A",
+    "location": "Area A",
     "timestamp": "2024-03-25T08:00:00",
     "data": [
         {
@@ -71,5 +71,5 @@ Example: topicV1 in localhost:9092
 
 | Sensor ID | Sensor Type      | Location    | Timestamp           | Value | Unit    |  
 |-----------|------------------|-------------|---------------------|-------|---------|  
-| sensor001 | Temperature      | Machine A   | 2024-03-25T08:00:00 | 25.5  | Celsius |  
-| sensor002 | Humidity         | Machine A   | 2024-03-25T08:00:00 | 60.2  | %       |  
+| sensor001 | Temperature      | Area A      | 2024-03-25T08:00:00 | 25.5  | Celsius |  
+| sensor002 | Humidity         | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
