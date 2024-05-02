@@ -11,13 +11,14 @@ import org.apache.flink.table.types.DataType;
 import java.util.Properties;
 
 public class DorisSinkConnector {
-    String fenodes;
+    String feNodes;
     String table;
     String username;
     String password;
 
-    public DorisSinkConnector(String fenodes, String table, String username, String password) {
-        this.fenodes = fenodes;
+    // constructor
+    public DorisSinkConnector(String feNodes, String table, String username, String password) {
+        this.feNodes = feNodes;
         this.table = table;
         this.username = username;
         this.password = password;
@@ -28,7 +29,7 @@ public class DorisSinkConnector {
         //doris sink option
         DorisSink.Builder<T> builder = DorisSink.builder();
         DorisOptions.Builder dorisBuilder = DorisOptions.builder()
-                .setFenodes(this.fenodes)
+                .setFenodes(this.feNodes)
                 .setTableIdentifier(this.table)
                 .setUsername(this.username)
                 .setPassword(this.password);

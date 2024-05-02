@@ -4,13 +4,13 @@ import lombok.Data;
 
 // define topic and payload class
 @Data // auto generate getter, setter
-public class KafkaTopicPayload {
-    // data structure we want to deserialze
+public class KafkaTopicPayloadEvent {
+    // data structure we want to deserialize
     private String topicName;
     private byte[] payload;
 
     // constructor
-    public KafkaTopicPayload(String topicName, byte[] payload) {
+    public KafkaTopicPayloadEvent(String topicName, byte[] payload) {
         this.topicName = topicName;
         this.payload = payload;
     }

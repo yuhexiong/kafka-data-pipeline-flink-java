@@ -45,6 +45,6 @@ public class KafkaToKafka {
 		stream.sinkTo(sink);
 
 		// run job
-		env.execute("Flink Kafka To Kafka Example");
+		env.execute("Kafka To Kafka Example");
 	}
 }

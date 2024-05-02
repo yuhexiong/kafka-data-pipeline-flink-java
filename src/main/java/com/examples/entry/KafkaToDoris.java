@@ -68,5 +68,4 @@ public class KafkaToDoris {
 
         env.execute("Kafka to Doris Example");
     }
-
 }

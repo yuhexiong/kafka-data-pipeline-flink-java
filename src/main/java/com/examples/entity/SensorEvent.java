@@ -7,7 +7,7 @@ import com.alibaba.fastjson2.annotation.JSONField;
 // define sensor event class
 @Data // auto generate getter, setter
 public class SensorEvent {
-    // data structure we want to deserialze
+    // data structure we want to deserialize
     private String sensorId;
     private String sensorType;
     private String timestamp;
@@ -25,7 +25,7 @@ public class SensorEvent {
         this.unit = unit;
     }
 
-    // data structure before we deserialze
+    // data structure before we deserialize
     @Data
     public static class SensorDataEvent {
         private String location;

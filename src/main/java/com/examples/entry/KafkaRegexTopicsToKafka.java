@@ -1,7 +1,7 @@
 package com.examples.entry;
 
 import com.examples.deserializer.KafkaTopicPayloadDeserializationSchema;
-import com.examples.entity.KafkaTopicPayload;
+import com.examples.entity.KafkaTopicPayloadEvent;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.base.DeliveryGuarantee;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
@@ -19,7 +19,7 @@ public class KafkaRegexTopicsToKafka {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         // setup source(kafka)
-        KafkaSource<KafkaTopicPayload> source = KafkaSource.<KafkaTopicPayload>builder()
+        KafkaSource<KafkaTopicPayloadEvent> source = KafkaSource.<KafkaTopicPayloadEvent>builder()
                 .setBootstrapServers("localhost:9092")
                 .setTopicPattern(Pattern.compile("^topicV.*"))
                 .setGroupId("group-1")
@@ -28,10 +28,10 @@ public class KafkaRegexTopicsToKafka {
                 .build();
 
         // create stream, noWatermarks -> no time attribute
-        DataStream<KafkaTopicPayload> stream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "kafka source");
+        DataStream<KafkaTopicPayloadEvent> stream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "kafka source");
 
         // setup destination(kafka)
-        KafkaSink<KafkaTopicPayload> sink = KafkaSink.<KafkaTopicPayload>builder()
+        KafkaSink<KafkaTopicPayloadEvent> sink = KafkaSink.<KafkaTopicPayloadEvent>builder()
                 .setBootstrapServers("localhost:9093,localhost:9094,localhost:9095")
                 .setRecordSerializer(new KafkaTopicPayloadSerializationSchema())
                 .setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE) // guarantee at least send one time
@@ -43,6 +43,6 @@ public class KafkaRegexTopicsToKafka {
         stream.sinkTo(sink);
 
         // run job
-        env.execute("Flink Kafka Regex Topics To Kafka Example");
+        env.execute("Kafka Regex Topics To Kafka Example");
     }
 }
