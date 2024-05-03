@@ -9,6 +9,7 @@ import com.examples.function.MonitoringDataBroadcastProcessFunction;
 import com.examples.function.MonitoringDataToRowDataFunction;
 import org.apache.doris.flink.sink.DorisSink;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
@@ -22,6 +23,8 @@ public class TwoKafkaToDoris {
     public static void main(String[] args) throws Exception {
         // setup environment
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.enableCheckpointing(10000);
+        env.setRuntimeMode(RuntimeExecutionMode.STREAMING);
 
         // setup source(kafka sensor)
         KafkaSource<SensorEvent> sensorSource = KafkaSource.<SensorEvent>builder()

@@ -69,7 +69,62 @@ Example: topicV1 in localhost:9092
 
 - doris table
 
-| Sensor ID | Sensor Type      | Location    | Timestamp           | Value | Unit    |  
-|-----------|------------------|-------------|---------------------|-------|---------|  
-| sensor001 | Temperature      | Area A      | 2024-03-25T08:00:00 | 25.5  | Celsius |  
-| sensor002 | Humidity         | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
+| id        | type          | location    | timestamp           | value | unit    |  
+|-----------|---------------|-------------|---------------------|-------|---------|  
+| sensor001 | Temperature   | Area A      | 2024-03-25T08:00:00 | 25.5  | Celsius |  
+| sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
+
+
+### TwoKafkaToDoris
+
+- Kafka Data Structure V1
+```
+{
+    "location": "Area A",
+    "timestamp": "2024-03-25T08:00:00",
+    "data": [
+        {
+            "sensorId": "sensor001",
+            "sensorType": "Temperature",
+            "value": 25.5,
+            "unit": "Celsius"
+        },
+        {
+            "sensorId": "sensor002",
+            "sensorType": "Humidity",
+            "value": 60.2,
+            "unit": "%"
+        }
+    ]
+}
+```
+
+- Kafka Data Structure V2
+```
+{
+    "equipments": [
+        {
+            "id": "equipment001",
+            "name": "機器1",
+            "location": "Area A"
+        }
+    ],
+    "sensors": [
+        {
+            "id": "sensor001",
+            "equipments": ["equipment001", "equipment002"]
+        },
+        {
+            "id": "sensor002",
+            "equipments": ["equipment001", "equipment003"]
+        }
+    ]
+}
+```
+
+- doris table
+
+| equipment_id  | sensor_id | sensor_type   | sensor_timestamp      | sensor_value | sensor_unit  |  
+|---------------|-----------|---------------|-----------------------|--------------|--------------|  
+| equipment001  | sensor001 | Temperature   | 2024-05-02T08:00:00   | 25.5         | Celsius      |  
+| equipment001  | sensor002 | Humidity      | 2024-05-02T08:00:00   | 60.2         | %            |  

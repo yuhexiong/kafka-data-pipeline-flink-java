@@ -48,7 +48,7 @@ public class MonitoringDataBroadcastProcessFunction extends BroadcastProcessFunc
         monitoringDataEvent.setEquipmentId(equipmentId);
         monitoringDataEvent.setSensorId(sensorEvent.getSensorId());
         monitoringDataEvent.setSensorType(sensorEvent.getSensorType());
-        monitoringDataEvent.setSensorTimestamp(Long.parseLong(sensorEvent.getTimestamp()));
+        monitoringDataEvent.setSensorTimestamp(sensorEvent.getLongTimestamp());
         monitoringDataEvent.setSensorValue(sensorEvent.getValue());
         monitoringDataEvent.setSensorUnit(sensorEvent.getUnit());
         return monitoringDataEvent;

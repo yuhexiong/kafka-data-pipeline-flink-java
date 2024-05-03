@@ -11,15 +11,17 @@ public class SensorEvent {
     private String sensorId;
     private String sensorType;
     private String timestamp;
+    private Long longTimestamp;
     private String location;
     private Double value;
     private String unit;
 
     // constructor
-    public SensorEvent(String sensorId, String sensorType, String timestamp, String location, Double value, String unit) {
+    public SensorEvent(String sensorId, String sensorType, String timestamp, Long longTimestamp, String location, Double value, String unit) {
         this.sensorId = sensorId;
         this.sensorType = sensorType;
         this.timestamp = timestamp;
+        this.longTimestamp = longTimestamp;
         this.location = location;
         this.value = value;
         this.unit = unit;
