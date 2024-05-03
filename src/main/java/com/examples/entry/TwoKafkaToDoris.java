@@ -59,7 +59,6 @@ public class TwoKafkaToDoris {
                         {DataTypes.VARCHAR(25), DataTypes.VARCHAR(25), DataTypes.VARCHAR(25), DataTypes.TIMESTAMP(9), DataTypes.DOUBLE(), DataTypes.VARCHAR(100)}
         );
 
-
         // connect stream and sink
         MonitoringDataBroadcastProcessFunction broadcastProcessFunction = new MonitoringDataBroadcastProcessFunction();
         BroadcastStream<SettingEvent> sensorMapBroadcastStream = settingStream.broadcast(broadcastProcessFunction.getMapStateDescriptor());
