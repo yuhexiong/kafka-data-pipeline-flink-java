@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
 import org.apache.flink.connector.jdbc.JdbcSink;
 
-public class KafkaToDoris {
+public class KafkaToDorisByJDBCSink {
 
     public static void main(String[] args) throws Exception {
         // setup environment

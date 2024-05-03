@@ -46,7 +46,7 @@ Example: topicV1 in localhost:9092
 ```
 
 
-### 3. KafkaToDoris / KafkaToDorisByDorisSink
+### 3. KafkaToDorisByJDBCSink / KafkaToDorisByDorisSink
 
 - Kafka Data Structure
 ```
