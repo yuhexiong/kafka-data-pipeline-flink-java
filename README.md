@@ -1,4 +1,5 @@
 # Kafka Data Pipeline Flink
+Data pipeline written by flink to transfer kafka to kakfa, doris and mongodb, and also merge the two data sources.  
 
 ## Overview
 
@@ -28,11 +29,12 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myapp
 
 ## Entry
 
-### KafkaToKafka
+### 1. KafkaToKafka
 
 topic1 in localhost:9092 -> topic2 in localhost:9092  
 
-### KafkaRegexTopicsToKafka
+
+### 2. KafkaRegexTopicsToKafka
 
 All topics matching "^topicV.*" in localhost:9092 will be backed up to the same topics in localhost:9093, localhost:9094, localhost:9095.  
 
@@ -43,7 +45,8 @@ Example: topicV1 in localhost:9092
   -> topicV1 in localhost:9095  
 ```
 
-### KafkaToDoris
+
+### 3. KafkaToDoris
 
 - Kafka Data Structure
 ```
@@ -75,7 +78,8 @@ Example: topicV1 in localhost:9092
 | sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
 
 
-### TwoKafkaToDoris
+
+### 4. TwoKafkaToDoris
 
 - Kafka Data Structure V1
 ```
@@ -128,3 +132,8 @@ Example: topicV1 in localhost:9092
 |---------------|-----------|---------------|-----------------------|--------------|--------------|  
 | equipment001  | sensor001 | Temperature   | 2024-05-02T08:00:00   | 25.5         | Celsius      |  
 | equipment001  | sensor002 | Humidity      | 2024-05-02T08:00:00   | 60.2         | %            |  
+
+
+### 5. KafkaToMongoDB
+
+topic1 in localhost:9092 -> mongoDB database.collection  
