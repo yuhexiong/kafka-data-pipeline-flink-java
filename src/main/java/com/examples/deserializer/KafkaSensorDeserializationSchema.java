@@ -20,7 +20,7 @@ public class KafkaSensorDeserializationSchema implements DeserializationSchema<S
         
         // get timestamp and location
         String timestamp = sensorDataEvent.getTimestamp();
-        Long longTimestamp = timestamp > MAX_TIMESTAMP_SECONDS ? timestamp : timestamp * 1000;
+        Long longTimestamp = timestamp > (long) Math.pow(10, 11) ? timestamp : timestamp * 1000;
         String location = sensorDataEvent.getLocation();
 
         // use for loop to get every sensor
