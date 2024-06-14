@@ -26,7 +26,7 @@ public class DorisSinkConnector {
 
     @SuppressWarnings("unchecked")
     public <T> DorisSink<T> buildDorisSink(String[] fields, DataType[] types) {
-        //doris sink option
+        // doris sink option
         DorisSink.Builder<T> builder = DorisSink.builder();
         DorisOptions.Builder dorisBuilder = DorisOptions.builder()
                 .setFenodes(this.feNodes)

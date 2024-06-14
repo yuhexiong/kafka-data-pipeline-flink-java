@@ -7,6 +7,9 @@ import org.apache.flink.util.Collector;
 import com.alibaba.fastjson2.JSON;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class KafkaSensorDeserializationSchema implements DeserializationSchema<SensorEvent> {
     @Override
@@ -18,9 +21,23 @@ public class KafkaSensorDeserializationSchema implements DeserializationSchema<S
     public void deserialize(byte[] bytes, Collector<SensorEvent> collector) throws IOException {
         SensorEvent.SensorDataEvent sensorDataEvent = JSON.parseObject(bytes, SensorEvent.SensorDataEvent.class);
         
-        // get timestamp and location
+        // get timestamp
         String timestamp = sensorDataEvent.getTimestamp();
-        Long longTimestamp = timestamp > (long) Math.pow(10, 11) ? timestamp : timestamp * 1000;
+        long longTimestamp;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date date = dateFormat.parse(timestamp);
+            longTimestamp = date.getTime();
+            if (longTimestamp < Math.pow(10, 11)) {
+                longTimestamp *= 1000; // convert seconds to milliseconds if timestamp is in seconds
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Handle parsing exception
+            longTimestamp = System.currentTimeMillis(); // use current time as fallback
+        }
+
+        // get location
         String location = sensorDataEvent.getLocation();
 
         // use for loop to get every sensor

@@ -4,7 +4,6 @@ import com.examples.entity.SensorEvent;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.table.data.GenericRowData;
 import org.apache.flink.table.data.StringData;
-import org.apache.flink.table.data.Double;
 import org.apache.flink.table.data.TimestampData;
 
 public class SensorEventToRowDataFunction implements MapFunction<SensorEvent, GenericRowData> {
