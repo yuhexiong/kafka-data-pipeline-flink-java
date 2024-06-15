@@ -78,8 +78,34 @@ Example: topicV1 in localhost:9092
 | sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
 
 
+### 4. DorisToKafka
 
-### 4. TwoKafkaToDoris
+- doris table
+
+| id        | type          | location    | timestamp           | value | unit    |  
+|-----------|---------------|-------------|---------------------|-------|---------|  
+| sensor001 | Temperature   | Area A      | 2024-03-25T08:00:00 | 25.5  | Celsius |  
+| sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
+
+- Kafka Data Structure
+```
+{
+    "location": "Area A",
+    "timestamp": "2024-03-25T08:00:00",
+    "data": [
+        {
+            "sensorId": "sensor001",
+            "sensorType": "Temperature",
+            "value": 25.5,
+            "unit": "Celsius"
+        }
+    ]
+}
+```
+
+
+
+### 5. TwoKafkaToDoris
 
 - Kafka Data Structure V1
 ```
@@ -134,6 +160,7 @@ Example: topicV1 in localhost:9092
 | equipment001  | sensor002 | Humidity      | 2024-05-02T08:00:00   | 60.2         | %            |  
 
 
-### 5. KafkaToMongoDB
+### 6. KafkaToMongoDB
 
 topic1 in localhost:9092 -> mongoDB database.collection  
+
