@@ -2,16 +2,16 @@ package com.examples.entity;
 
 import lombok.Data;
 
-// define topic and payload class
+// define topic and value class
 @Data // auto generate getter, setter
-public class KafkaTopicPayloadEvent {
+public class KafkaTopicValueEvent {
     // data structure we want to deserialize
     private String topicName;
-    private byte[] payload;
+    private byte[] value;
 
     // constructor
-    public KafkaTopicPayloadEvent(String topicName, byte[] payload) {
+    public KafkaTopicValueEvent(String topicName, byte[] value) {
         this.topicName = topicName;
-        this.payload = payload;
+        this.value = value;
     }
 }

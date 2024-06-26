@@ -21,7 +21,7 @@ under the License.
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>entry</groupId>
-	<artifactId>kafka-datapipeline-flink-java</artifactId>
+	<artifactId>kafka-data-pipeline-flink-java</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
