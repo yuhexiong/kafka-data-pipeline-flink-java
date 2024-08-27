@@ -61,8 +61,8 @@ public class TwoKafkaToDoris {
 
         // connect stream and sink
         MonitoringDataBroadcastProcessFunction broadcastProcessFunction = new MonitoringDataBroadcastProcessFunction();
-        BroadcastStream<SettingEvent> sensorMapBroadcastStream = settingStream.broadcast(broadcastProcessFunction.getMapStateDescriptor());
-        sensorStream.connect(sensorMapBroadcastStream).process(broadcastProcessFunction).map(new MonitoringDataToRowDataFunction())
+        BroadcastStream<SettingEvent> settingBroadcastStream = settingStream.broadcast(broadcastProcessFunction.getMapStateDescriptor());
+        sensorStream.connect(settingBroadcastStream).process(broadcastProcessFunction).map(new MonitoringDataToRowDataFunction())
                 .sinkTo(dorisSink);
 
         // print log
