@@ -1,5 +1,5 @@
 # Kafka Data Pipeline Flink
-Data pipeline written by flink to transfer kafka to kakfa, doris and mongodb, and also merge the two data sources.  
+Data pipeline written by flink to transfer Kafka to Kafka, Doris and MongoDB, and also merge the two data sources.  
 
 ## Overview
 
@@ -70,7 +70,7 @@ Example: topicV1 in localhost:9092
 }
 ```
 
-- doris table
+- Doris table
 
 | id        | type          | location    | timestamp           | value | unit    |  
 |-----------|---------------|-------------|---------------------|-------|---------|  
@@ -80,7 +80,7 @@ Example: topicV1 in localhost:9092
 
 ### 4. DorisToKafka
 
-- doris table
+- Doris table
 
 | id        | type          | location    | timestamp           | value | unit    |  
 |-----------|---------------|-------------|---------------------|-------|---------|  
@@ -152,7 +152,7 @@ Example: topicV1 in localhost:9092
 }
 ```
 
-- doris table
+- Doris table
 
 | equipment_id  | sensor_id | sensor_type   | sensor_timestamp      | sensor_value | sensor_unit  |  
 |---------------|-----------|---------------|-----------------------|--------------|--------------|  
@@ -162,5 +162,5 @@ Example: topicV1 in localhost:9092
 
 ### 6. KafkaToMongoDB
 
-topic1 in localhost:9092 -> mongoDB database.collection  
+topic1 in localhost:9092 -> MongoDB database.collection  
 
