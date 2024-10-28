@@ -49,7 +49,7 @@ Example: topicV1 in localhost:9092
 ### 3. KafkaToDorisByJDBCSink / KafkaToDorisByDorisSink
 
 - Kafka Data Structure
-```
+```json
 {
     "location": "Area A",
     "timestamp": "2024-03-25T08:00:00",
@@ -88,7 +88,7 @@ Example: topicV1 in localhost:9092
 | sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
 
 - Kafka Data Structure
-```
+```json
 {
     "location": "Area A",
     "timestamp": "2024-03-25T08:00:00",
@@ -108,7 +108,7 @@ Example: topicV1 in localhost:9092
 ### 5. TwoKafkaToDoris
 
 - Kafka Data Structure V1
-```
+```json
 {
     "location": "Area A",
     "timestamp": "2024-03-25T08:00:00",
@@ -130,7 +130,7 @@ Example: topicV1 in localhost:9092
 ```
 
 - Kafka Data Structure V2
-```
+```json
 {
     "equipments": [
         {
