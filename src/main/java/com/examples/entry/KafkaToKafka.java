@@ -19,7 +19,7 @@ public class KafkaToKafka {
 		// setup source(kafka)
 		KafkaSource<String> source = KafkaSource.<String>builder()
 				.setBootstrapServers("localhost:9092")
-				.setTopics("topic1")
+				.setTopics("topic-source")
 				.setGroupId("group1")
 				.setStartingOffsets(OffsetsInitializer.earliest()) // read from earliest
 				.setValueOnlyDeserializer(new SimpleStringSchema()) // as string
@@ -32,7 +32,7 @@ public class KafkaToKafka {
 		KafkaSink<String> sink = KafkaSink.<String>builder()
 				.setBootstrapServers("localhost:9092")
 				.setRecordSerializer(KafkaRecordSerializationSchema.builder()
-						.setTopic("topic2")
+						.setTopic("topic-sink")
 						.setValueSerializationSchema(new SimpleStringSchema())
 						.build()
 				)

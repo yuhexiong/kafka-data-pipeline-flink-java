@@ -23,7 +23,7 @@ public class KafkaToDorisByDorisSink {
         // setup source(kafka)
         KafkaSource<SensorEvent> source = KafkaSource.<SensorEvent>builder()
                 .setBootstrapServers("localhost:9092")
-                .setTopics("topic-1")
+                .setTopics("topic-sensor")
                 .setGroupId("group-1")
                 .setStartingOffsets(OffsetsInitializer.earliest()) // read from earliest
                 .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new KafkaSensorDeserializationSchema())) // as SensorEvent

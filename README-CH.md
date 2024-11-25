@@ -1,11 +1,11 @@
 # Kafka Data Pipeline Flink
-Data pipeline written by Flink to transfer Kafka to Kafka, Doris and MongoDB, and also merge the two data sources.  
+使用 Flink 寫的資料管道，用於將資料從 Kafka 傳輸到 Kafka、Doris 和 MongoDB，也支援合併兩個資料來源。  
 
 ## Overview
 
-- Platform: JDK 11
-- Build Tool: Apache Maven v3.9.6
-- Data Processing Framework: Flink v1.18.1
+- 平台: JDK 11
+- 構建工具: Apache Maven v3.9.6
+- 資料處理框架: Flink v1.18.1
 
 
 ## Run
@@ -22,7 +22,7 @@ docker compose build
 
 ### Run Docker Container
 
-edit `YourJavaClass` to Class you want to run  
+編輯 `YourJavaClass` 成你想要跑的 Class  
 ```
 docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 ```
@@ -33,16 +33,17 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 
 ### 1. KafkaToKafka
 
-Transfer all messages from `topic-source` in Kafka (localhost:9092) to `topic-sink` in Kafka (localhost:9092).  
+將 Kafka (localhost:9092) 中的 `topic-source` 的所有 message 轉換至 Kafka (localhost:9092) 中的 `topic-sink`  
 
 
 ### 2. KafkaRegexTopicsToKafka
 
-Backed up all topics matching `^topicV.*` in Kafka (localhost:9092) to the same topics in Kafka (localhost:9093), Kafka(localhost:9094), Kafka(localhost:9095).  
+
+將 Kafka (localhost:9092) 中所有符合正則表達式 `^topicV.*` 的 Topic 備份到 Kafka (localhost:9093)、 Kafka (localhost:9094) 和 Kafka (localhost:9095) 中的相同 Topic。  
 
 ### 3. KafkaToDorisByJDBCSink / KafkaToDorisByDorisSink
 
-Split the `data` array/list in `topic-sensor` in Kafka (localhost:9092) and insert it into the Doris (localhost:9030) database `database.sensor`.
+將 Kafka (localhost:9092) 中的 `topic-sensor` 的 `data` 這個 array/list 拆解後轉入 Doris (localhost:9030) 資料庫 (database.sensor)  
 
 - Kafka Data Structure
 ```json
@@ -76,7 +77,7 @@ Split the `data` array/list in `topic-sensor` in Kafka (localhost:9092) and inse
 
 ### 4. DorisToKafka
 
-Convert the data from the Doris (localhost:9030) database `database.sensor` into an array/list named `data` and transfer it to `topic-sensor` in Kafka (localhost:9092).  
+將 Doris (localhost:9030) 資料庫 `database.sensor` 的資料轉換成 `data` 名稱的 array/list 轉入 Kafka (localhost:9092) 的 `topic-sensor`  
 
 - Doris table
 
@@ -107,7 +108,7 @@ Convert the data from the Doris (localhost:9030) database `database.sensor` into
 
 ### 5. TwoKafkaToDoris
 
-Break down the `data` array/list from `topic-sensor` in Kafka (localhost:9092) and combine it with the equipment and sensor settings from `topic-setting`. Then, transfer the resulting data into the Doris (localhost:9030) database `database.monitoring_data`.  
+將 Kafka (localhost:9092) 中的 `topic-sensor` 的 `data` 這個 array/list 拆解並結合 `topic-setting` 的 equipments 和 sensors 設定後 轉入 Doris (localhost:9030) 資料庫 `database.monitoring_data`  
 
 - Kafka Data Structure V1
 ```json
@@ -164,5 +165,5 @@ Break down the `data` array/list from `topic-sensor` in Kafka (localhost:9092) a
 
 ### 6. KafkaToMongoDB
 
-Transfer message in `topic` in Kafka (localhost:9092) to MongoDB (localhost:27017) `database.collection`  
+將 Kafka (localhost:9092) 中 `topic` 的訊息轉換並存入 MongoDB (localhost:27017) 的 `database.collection`。  
 

@@ -19,7 +19,7 @@ public class KafkaToMongoDB {
         // setup source(kafka)
         KafkaSource<String> source = KafkaSource.<String>builder()
                 .setBootstrapServers("localhost:9092")
-                .setTopics("topic1")
+                .setTopics("topic")
                 .setGroupId("group-1")
                 .setStartingOffsets(OffsetsInitializer.earliest()) // read from earliest
                 .setValueOnlyDeserializer(new SimpleStringSchema()) // as string
@@ -30,7 +30,7 @@ public class KafkaToMongoDB {
 
         // setup destination(mongoDB)
         MongoSink<String> sink = MongoSink.<String>builder()
-                .setUri("mongodb://root:password@127.0.0.1:27017")
+                .setUri("mongodb://root:password@localhost:27017")
                 .setDatabase("database")
                 .setCollection("collection")
                 .setBatchSize(1000)

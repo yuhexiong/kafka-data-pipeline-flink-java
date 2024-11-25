@@ -29,7 +29,7 @@ public class TwoKafkaToDoris {
         // setup source(kafka sensor)
         KafkaSource<SensorEvent> sensorSource = KafkaSource.<SensorEvent>builder()
                 .setBootstrapServers("localhost:9092")
-                .setTopics("topic-1")
+                .setTopics("topic-sensor")
                 .setGroupId("group-1")
                 .setStartingOffsets(OffsetsInitializer.earliest()) // read from earliest
                 .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new KafkaSensorDeserializationSchema())) // as SensorEvent
@@ -41,7 +41,7 @@ public class TwoKafkaToDoris {
         // setup source(kafka setting)
         KafkaSource<SettingEvent> settingSource = KafkaSource.<SettingEvent>builder()
                 .setBootstrapServers("localhost:9092")
-                .setTopics("topic-2")
+                .setTopics("topic-setting")
                 .setGroupId("group-1")
                 .setStartingOffsets(OffsetsInitializer.earliest()) // read from earliest
                 .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new KafkaSettingDeserializationSchema())) // as SettingEvent

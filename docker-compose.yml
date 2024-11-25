@@ -23,7 +23,7 @@ services:
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
 
-  myapp:
+  myFlinkJob:
     build: .
     ports:
       - "8080:8080"

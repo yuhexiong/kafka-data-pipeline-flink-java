@@ -30,7 +30,7 @@ public class DorisToKafka {
 		// setup destination(kafka)
 		KafkaSink<SensorEvent.SensorDataEvent> sink = KafkaSink.<SensorEvent.SensorDataEvent>builder()
 				.setBootstrapServers("localhost:9092")
-				.setRecordSerializer(new KafkaSensorSerializationSchema("topic-1"))
+				.setRecordSerializer(new KafkaSensorSerializationSchema("topic-sensor"))
 				.setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE) // guarantee at least send one time
 				.build();
 
