@@ -1,4 +1,7 @@
 # Kafka Data Pipeline Flink
+
+**(also provided Traditional Chinese version document [README-CH.md](README-CH.md).)**  
+
 Data pipeline written by Flink to transfer Kafka to Kafka, Doris and MongoDB, and also merge the two data sources.  
 
 ## Overview
@@ -44,7 +47,7 @@ Backed up all topics matching `^topicV.*` in Kafka (localhost:9092) to the same 
 
 Split the `data` array/list in `topic-sensor` in Kafka (localhost:9092) and insert it into the Doris (localhost:9030) database `database.sensor`.
 
-- Kafka Data Structure
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -66,7 +69,7 @@ Split the `data` array/list in `topic-sensor` in Kafka (localhost:9092) and inse
 }
 ```
 
-- Doris table
+- Doris Table `database.sensor`
 ```
 | id        | type          | location    | timestamp           | value | unit    |  
 |-----------|---------------|-------------|---------------------|-------|---------|  
@@ -78,7 +81,7 @@ Split the `data` array/list in `topic-sensor` in Kafka (localhost:9092) and inse
 
 Convert the data from the Doris (localhost:9030) database `database.sensor` into an array/list named `data` and transfer it to `topic-sensor` in Kafka (localhost:9092).  
 
-- Doris table
+- Doris Table `database.sensor`
 
 ```
 | id        | type          | location    | timestamp           | value | unit    |  
@@ -87,7 +90,7 @@ Convert the data from the Doris (localhost:9030) database `database.sensor` into
 | sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
 ```
 
-- Kafka Data Structure
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -109,7 +112,7 @@ Convert the data from the Doris (localhost:9030) database `database.sensor` into
 
 Break down the `data` array/list from `topic-sensor` in Kafka (localhost:9092) and combine it with the equipment and sensor settings from `topic-setting`. Then, transfer the resulting data into the Doris (localhost:9030) database `database.monitoring_data`.  
 
-- Kafka Data Structure V1
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -131,7 +134,7 @@ Break down the `data` array/list from `topic-sensor` in Kafka (localhost:9092) a
 }
 ```
 
-- Kafka Data Structure V2
+- Kafka Topic `topic-setting` Message
 ```json
 {
     "equipments": [
@@ -154,7 +157,7 @@ Break down the `data` array/list from `topic-sensor` in Kafka (localhost:9092) a
 }
 ```
 
-- Doris table
+- Doris Table `database.monitoring_data`
 ```
 | equipment_id  | sensor_id | sensor_type   | sensor_timestamp      | sensor_value | sensor_unit  |  
 |---------------|-----------|---------------|-----------------------|--------------|--------------|  

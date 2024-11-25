@@ -45,7 +45,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 
 將 Kafka (localhost:9092) 中的 `topic-sensor` 的 `data` 這個 array/list 拆解後轉入 Doris (localhost:9030) 資料庫 (database.sensor)  
 
-- Kafka Data Structure
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -67,7 +67,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 }
 ```
 
-- Doris table
+- Doris Table `database.sensor`
 ```
 | id        | type          | location    | timestamp           | value | unit    |  
 |-----------|---------------|-------------|---------------------|-------|---------|  
@@ -79,8 +79,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 
 將 Doris (localhost:9030) 資料庫 `database.sensor` 的資料轉換成 `data` 名稱的 array/list 轉入 Kafka (localhost:9092) 的 `topic-sensor`  
 
-- Doris table
-
+- Doris Table `database.sensor`
 ```
 | id        | type          | location    | timestamp           | value | unit    |  
 |-----------|---------------|-------------|---------------------|-------|---------|  
@@ -88,7 +87,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 | sensor002 | Humidity      | Area A      | 2024-03-25T08:00:00 | 60.2  | %       |  
 ```
 
-- Kafka Data Structure
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -110,7 +109,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 
 將 Kafka (localhost:9092) 中的 `topic-sensor` 的 `data` 這個 array/list 拆解並結合 `topic-setting` 的 equipments 和 sensors 設定後 轉入 Doris (localhost:9030) 資料庫 `database.monitoring_data`  
 
-- Kafka Data Structure V1
+- Kafka Topic `topic-sensor` Message
 ```json
 {
     "location": "Area A",
@@ -132,7 +131,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 }
 ```
 
-- Kafka Data Structure V2
+- Kafka Topic `topic-setting` Message
 ```json
 {
     "equipments": [
@@ -155,7 +154,7 @@ docker compose run --rm -e MY_CLASS=YourJavaClass myFlinkJob
 }
 ```
 
-- Doris table
+- Doris Table `database.monitoring_data`
 ```
 | equipment_id  | sensor_id | sensor_type   | sensor_timestamp      | sensor_value | sensor_unit  |  
 |---------------|-----------|---------------|-----------------------|--------------|--------------|  
